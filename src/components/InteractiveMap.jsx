@@ -19,10 +19,15 @@ export class InteractiveMap extends React.Component {
         super(props);
         this.mapRef = React.createRef();
         this.imageRef = React.createRef();
+        this.state = { winWidth: 200, winHeight: 200 };
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
     
-    drawImageContextAndPins(context, image, pins) {
-        context.drawImage(image, 0, 0)
+    drawImageContextAndPins(context, image, pins, winWidth, winHeight) {
+        const hRatio = winWidth / image.naturalWidth;
+        const vRatio = winHeight / image.naturalHeight  ;
+        var ratio  = Math.min(hRatio, vRatio);
+        context.drawImage(image, 0, 0, image.naturalWidth, image.naturalHeight, 0, 0, image.naturalWidth * ratio, image.naturalHeight * ratio);
         context.fillStyle = pinRect.style;
         pins.map( pin => {
             return context.fillRect(pin.xcoord, pin.ycoord, pinRect.width, pinRect.height);
@@ -33,14 +38,16 @@ export class InteractiveMap extends React.Component {
         const canvas = this.mapRef.current;
         const img = this.imageRef.current;
         const ctx = canvas.getContext("2d");
-        img.onload = () => (this.drawImageContextAndPins(ctx, img, pins));
+        this.updateWindowDimensions();
+        window.addEventListener('resize', this.updateWindowDimensions);
+        img.onload = () => (this.drawImageContextAndPins(ctx, img, pins, window.innerWidth, window.innerHeight));
     }
       
     render() {
-
+        const {winWidth, winHeight} = this.state;
         return (
             <div>
-                <canvas ref={this.mapRef} width={640} height={425} />
+                <canvas ref={this.mapRef} width={winWidth} height={winHeight} />
                 <img
                     ref={this.imageRef} 
                     src={mapImage}
@@ -50,4 +57,11 @@ export class InteractiveMap extends React.Component {
             </div>
         );
     };
+
+    updateWindowDimensions() {
+        const img = this.imageRef.current;
+        const ctx = this.mapRef.current.getContext("2d");
+        this.setState({ winWidth: window.innerWidth, winHeight: window.innerHeight },
+            () => (this.drawImageContextAndPins(ctx, img, pins, window.innerWidth, window.innerHeight)));
+    }
 }
