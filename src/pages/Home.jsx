@@ -1,7 +1,8 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React from 'react';
+import { InteractiveMap } from  '../components/InteractiveMap';
 
-const Home: React.FC = () => {
+const Home = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -22,6 +23,7 @@ const Home: React.FC = () => {
           </a>{" "}
           will be your guide.
         </p>
+        <InteractiveMap />
       </IonContent>
     </IonPage>
   );
