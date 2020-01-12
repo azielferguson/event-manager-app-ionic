@@ -12,10 +12,14 @@ const Home: React.FC = () => {
       <IonContent className="ion-padding">
         The world is your oyster.
         <p>
-          If you get lost, the{' '}
-          <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/">
+          If you get lost, the{" "}
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://ionicframework.com/docs/"
+          >
             docs
-          </a>{' '}
+          </a>{" "}
           will be your guide.
         </p>
       </IonContent>
