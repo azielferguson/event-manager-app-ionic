@@ -1,5 +1,7 @@
 {
-  "name": "EventManagerApp",
-  "integrations": {},
-  "type": "react"
+   "name": "EventManagerApp",
+   "integrations": {
+      "capacitor": {}
+   },
+   "type": "react"
 }
