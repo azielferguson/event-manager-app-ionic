@@ -1,34 +1,41 @@
 import { IonContent, IonItem, IonList, IonMenu, IonMenuToggle } from '@ionic/react';
 import React from 'react';
+import { withRouter } from 'react-router';
 
-const pages = [{ title: 'Home', path: '/' }];
+const pages = [
+   { title: 'Home', path: '/' },
+   { title: 'Map', path: '/map' }
+];
 
-const Menu = props => {
-   const navigateToPage = page => {
-      // props.history.push(page);
-      console.log('navigating');
+export class Menu extends React.Component {
+   navigateToPage = page => {
+      this.props.history.push(page);
    };
 
-   const renderMenuItems = () => {
-      return (
-         <IonMenuToggle>
-            <IonItem onClick={() => navigateToPage('/')}>Home</IonItem>
+   renderMenuItems = () => {
+      return pages.map(page => (
+         <IonMenuToggle key={page.title}>
+            <IonItem onClick={() => this.navigateToPage(page.path)}>
+               {page.title}
+            </IonItem>
          </IonMenuToggle>
-      );
+      ));
    };
 
-   return (
-      <IonMenu
-         side='start'
-         type='overlay'
-         menuId='side-nav'
-         contentId='main-outlet'
-      >
-         <IonContent>
-            <IonList>{renderMenuItems()}</IonList>
-         </IonContent>
-      </IonMenu>
-   );
-};
+   render() {
+      return (
+         <IonMenu
+            side='start'
+            type='overlay'
+            menuId='side-nav'
+            contentId='main-outlet'
+         >
+            <IonContent>
+               <IonList>{this.renderMenuItems()}</IonList>
+            </IonContent>
+         </IonMenu>
+      );
+   }
+}
 
-export default Menu;
+export default withRouter(Menu);

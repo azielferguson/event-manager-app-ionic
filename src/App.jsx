@@ -17,6 +17,7 @@ import { Redirect, Route } from 'react-router-dom';
 
 import Menu from './components/Menu';
 import Home from './pages/Home';
+import Map from './pages/Map';
 
 /* Core CSS required for Ionic components to work properly */
 /* Basic CSS for apps built with Ionic */
@@ -24,23 +25,24 @@ import Home from './pages/Home';
 /* Theme variables */
 const App = props => (
    <IonApp>
-      <Menu />
-      <IonHeader>
-         <IonToolbar>
-            <IonButtons slot='start'>
-               <IonMenuButton
-                  autoHide='false'
-                  fill='clear'
-                  color='dark'
-                  slot='start'
-               />
-            </IonButtons>
-            <IonTitle>World Expo 2020</IonTitle>
-         </IonToolbar>
-      </IonHeader>
       <IonReactRouter>
+         <Menu />
+         <IonHeader>
+            <IonToolbar>
+               <IonButtons slot='start'>
+                  <IonMenuButton
+                     autoHide='false'
+                     fill='clear'
+                     color='dark'
+                     slot='start'
+                  />
+               </IonButtons>
+               <IonTitle>World Expo 2020</IonTitle>
+            </IonToolbar>
+         </IonHeader>
          <IonRouterOutlet id='main-outlet'>
             <Route path='/home' component={Home} exact={true} />
+            <Route path='/map' component={Map} exact={true} />
             <Route exact path='/' render={() => <Redirect to='/home' />} />
          </IonRouterOutlet>
       </IonReactRouter>
