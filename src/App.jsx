@@ -10,7 +10,7 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/typography.css';
 
-import { IonApp, IonButtons, IonHeader, IonMenuButton, IonRouterOutlet, IonTitle, IonToolbar } from '@ionic/react';
+import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
@@ -27,22 +27,9 @@ const App = props => (
    <IonApp>
       <IonReactRouter>
          <Menu />
-         <IonHeader>
-            <IonToolbar>
-               <IonButtons slot='start'>
-                  <IonMenuButton
-                     autoHide='false'
-                     fill='clear'
-                     color='dark'
-                     slot='start'
-                  />
-               </IonButtons>
-               <IonTitle>World Expo 2020</IonTitle>
-            </IonToolbar>
-         </IonHeader>
          <IonRouterOutlet id='main-outlet'>
-            <Route path='/home' component={Home} exact={true} />
-            <Route path='/map' component={Map} exact={true} />
+            <Route path='/home' component={Home} exact />
+            <Route path='/map' component={Map} exact />
             <Route exact path='/' render={() => <Redirect to='/home' />} />
          </IonRouterOutlet>
       </IonReactRouter>

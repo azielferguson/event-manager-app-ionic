@@ -3,7 +3,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 
 const pages = [
-   { title: 'Home', path: '/' },
+   { title: 'Home', path: '/home' },
    { title: 'Map', path: '/map' }
 ];
 
