@@ -15,7 +15,9 @@ import { IonReactRouter } from '@ionic/react-router';
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
+import Menu from './components/Menu';
 import Home from './pages/Home';
+import Map from './pages/Map';
 
 /* Core CSS required for Ionic components to work properly */
 /* Basic CSS for apps built with Ionic */
@@ -24,8 +26,10 @@ import Home from './pages/Home';
 const App = () => (
    <IonApp>
       <IonReactRouter>
-         <IonRouterOutlet>
-            <Route path='/home' component={Home} exact={true} />
+         <Menu />
+         <IonRouterOutlet id='main-outlet'>
+            <Route path='/home' component={Home} exact />
+            <Route path='/map' component={Map} exact />
             <Route exact path='/' render={() => <Redirect to='/home' />} />
          </IonRouterOutlet>
       </IonReactRouter>

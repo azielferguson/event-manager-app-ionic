@@ -3,17 +3,17 @@ import React from 'react';
 
 import Header from '../components/Header';
 
-class Home extends React.Component {
+class Map extends React.Component {
    render() {
       return (
          <IonPage>
             <Header />
             <IonContent class='ion-padding'>
-               <h1>Home</h1>
+               <h1>Map</h1>
             </IonContent>
          </IonPage>
       );
    }
 }
 
-export default Home;
+export default Map;
