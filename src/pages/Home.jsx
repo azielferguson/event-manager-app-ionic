@@ -1,12 +1,17 @@
-import { IonContent } from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 import React from 'react';
+
+import Header from '../components/Header';
 
 class Home extends React.Component {
    render() {
       return (
-         <IonContent padding className='ion-padding'>
-            <h1>Home</h1>
-         </IonContent>
+         <IonPage>
+            <Header />
+            <IonContent class='ion-padding'>
+               <h1>Home</h1>
+            </IonContent>
+         </IonPage>
       );
    }
 }
